@@ -1,33 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root{
+    --cor1: #C5E5DA;
+    --cor2: #385748;
+    --cor3: #1E3227;
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root{
-    --cor1: #174794;
-    --cor2: #e4e4e4;
-    --cor3: #cfcaca;
-    --cor4: #0c0c0f;
-    --cor6: #11356e;
-}
-
 body{
     font-family: 'Poppins', sans-serif;
-    background-color: var(--cor3);
+    background-color: var(--cor2);
+    overflow: hidden;
 }
 
 /* ------------------HEADER------------------ */
-    
-nav{
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    padding: 1.25rem 6.25rem;
+    background-color: var(--cor3);
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    background-color: var(--cor1);
-    height: 10vh;
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
 }
 
 .logo{
@@ -35,7 +38,8 @@ nav{
     user-select: none;
     text-transform: uppercase;
     letter-spacing: 4px;
-    color: var(--cor2);
+    color: var(--cor1);
+    margin-left: 2.5rem;
 }
 
 ul{
@@ -44,27 +48,29 @@ ul{
 
 .navList{
     display: flex;
+    align-items: center;
     gap: 32px;
 }
 
 .navList a{
     position: relative;
     text-decoration: none;
-    color: var(--cor2);
+    color: var(--cor1);
     font-size: 1.2rem;
     font-weight: 500;
 }
 
-.navList a::after{
+.navList a:not(.btnLogin)::after{
     content: '';
     position: absolute;
     width: 100%;
     height: 3px;
-    background-color: var(--cor2);
+    background-color: var(--cor1);
     left: 0;
     bottom: -6px;
     border-radius: 5px;
     transform: scaleX(0);
+    transform-origin: left;
     transition: transform .3s;
 }
 
@@ -72,30 +78,28 @@ ul{
     transform: scaleX(1);
 }
 
-nav input{
+.btnLogin{
+    display: grid;
+    place-items: center;
     width: 130px;
     height: 50px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    border: transparent;
-    border-radius: 6px;
-    background-color: var(--cor6);
-    color: var(--cor2);
+    background: transparent;
+    border: 2px solid var(--cor1);
     outline: none;
-    padding: 10px;
+    border-radius: 6px;
     cursor: pointer;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem;
+    color: var(--cor1);
+    font-weight: 600;
     transition: .3s;
 }
 
-nav input:hover{
-    background-color: var(--cor2);
-    color:var(--cor6);
+.btnLogin:hover{
+    color: var(--cor3);
+    background-color: var(--cor1);
 }
 
-nav input:active{
-    box-shadow: none;
-}
+
 
 .mobileMenu{
     cursor: pointer;
@@ -105,7 +109,7 @@ nav input:active{
 .mobileMenu div{
     width: 32px;
     height: 2px;
-    background-color: var(--cor2);
+    background-color: var(--cor1);
     margin: 8px;
     border-radius: 5px;
     transition: .3s;
@@ -126,7 +130,7 @@ nav input:active{
         right: 0;
         width: 100vw;
         height: 90vh;
-        background-color: var(--cor1);
+        background-color: var(--cor3);
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
@@ -140,9 +144,6 @@ nav input:active{
 
     .navList a{
         opacity: 0;
-        display: block;
-        padding: 24px;
-        gap: 20px;
     }
 
     @keyframes navLinkFade {
@@ -173,90 +174,104 @@ nav input:active{
 /* ------------------LOGIN------------------ */
 
 main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.container{
-    background-color: var(--cor3);
-    border-radius: 14px;
-    margin: 14px;
-    max-width: 600px;
-    width: 100%;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
+    display: grid;
+    place-items: center;
 }
 
-.header{
-    padding: 24px;
-    text-align: center;
-    background-color: var(--cor1);
+:is(.background, .container, .content, .iconClose){
+    transition: .3s;
 }
 
-.form{
-    padding: 18px;
-}
-
-.form-content{
-    margin-bottom: 8px;
-    padding-bottom: 18px;
-    position: relative;
-}
-
-.form-content label{
-    display: inline-block;
-    margin-bottom: 4px;
-}
-
-.form-content input{
-    display: block;
-    width: 100%;
-    border-radius: 8px;
-    padding: 8px;
-    border: 2px solid var(--cor2);
-}
-
-.form-content span{
-    position: absolute;
-    bottom: -3px;
+.backbround{
+    position: fixed;
+    top: 10vh;
     left: 0;
-    visibility: hidden;
-    font-size: .75rem;
-    font-weight: 600;
-    margin: .25rem;
-}
-
-.form button{
-    background-color: var(--cor6);
-    color: var(--cor2);
     width: 100%;
-    padding: 10px;
-    border-radius: 14px;
-    border: 0;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 14px;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.form-content.error input{
-    border-color: #ff3b25;
-}
-
-.form-content.error span{
-    color: #ff3b25;
-    visibility: visible;
-}
-
-.form-content.success input{
-    border-color: #1ace65;
-}
-
-.form-content i{
+.container{
     position: absolute;
-    top: 40px;
-    right: 15px;
+    top: 50%;
+    /* right: 50%; */
+    right: -300px;
+    background-color: var(--cor3);
+    color: var(--cor1);
+    border: 2px solid var(--cor1);
+    width: 400px;
+    height: 440px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    transform: translate(50%, -50%);
 }
 
-.fa-eye, .fa-eye-slash{
-    cursor: pointer;
+@keyframes container-active{
+    0%, 50%{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+    55%, 100%{
+        right: 50%;
+    }
+    60%{
+        width: 150px;
+        border-radius: 12px;
+    }
+    75%{
+        transform: translate(50%, -50%);
+    }
 }
+
+@keyframes content-active{
+    0%, 75%{
+        opacity: 0;
+    }
+    85%, 100%{
+        opacity: 1;
+    }
+}
+
+main.open .background{
+    visibility: visible;
+    opacity: 1;
+}
+
+main.open .container{
+    animation: container-active 1s both;
+}
+
+main.open .content{
+    animation: content-active 1s both;
+}
+
+/* main.open{
+    scale: 0.75;
+} */
+
+.iconClose{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background-color: var(--cor1);
+    font-size: 2rem;
+    color: var(--cor2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px ;
+    z-index: 1;
+    cursor: pointer;
+
+}
+

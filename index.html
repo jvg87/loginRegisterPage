@@ -10,43 +10,27 @@
 </head>
 <body>
     <header>
-        <nav>
-            <h2 class="logo">Logo</h2>
-            <div class="mobileMenu">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
-            <ul class="navList">
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Projetos</a></li>
-                <li><a href="#">Contatos</a></li>
-            </ul>
-            <input type="button" value="Login">
+        <h2 class="logo">Logo</h2>
+        <div class="mobileMenu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <nav class="navList">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <a href="#" class="btnLogin">Login</a>
         </nav>
     </header>
     <main>
+        <div class="background"></div>
         <div class="container">
-            <section class="header">
-                <h2>Login</h2>
-            </section>
-            <form class="form login">
-                <div class="form-content">
-                    <i class="fa-solid fa-envelope"></i>
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Digite seu Email">
-                    <span class="email">Mensagem de erro</span>
-                </div>
-                <div class="form-content">
-                    <i id="fa-eye-confirm" class="fa-solid fa-eye"></i>
-                    <label for="confirmPassword">Confirmação de senha</label>
-                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirme a senha">
-                    <span class="confirmPassword">Mensagem de erro</span>
-                </div>
-                <button type="submit">Cadastrar</button>
-                <div class="loginRegister"><a href="#">Faça o Login</a></div>
-            </form>
+            <span class="iconClose"><i class="fa-solid fa-xmark"></i></span>
+            <div class="content">
+
+            </div>
         </div>
     </main>
     <script src="index.js" type="module"></script>

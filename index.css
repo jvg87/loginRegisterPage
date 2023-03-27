@@ -7,7 +7,9 @@
 }
 
 body{
-    font-family: 'Poppins', sans-serif;}
+    font-family: 'Poppins', sans-serif;
+    background-color: #1f1f29;
+}
 
 /* ------------------HEADER------------------ */
     
@@ -15,8 +17,9 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: #001F3C;
+    background-color: #17171f;
     height: 10vh;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
 }
 
 .logo{
@@ -61,10 +64,12 @@ ul{
 }
 
 nav input{
+    width: 130px;
+    height: 50px;
     font-size: 1.2rem;
     border: transparent;
     border-radius: 6px;
-    background-color: #003b72;
+    background-color: #101012;
     color: #e4e4e4;
     outline: none;
     padding: 10px;
@@ -74,8 +79,11 @@ nav input{
 }
 
 nav input:hover{
-    background-color: #004b91;
-    color: rgba(199, 198, 198, 0.548);
+    background-color: #291f1f;
+}
+
+nav input:active{
+    box-shadow: none;
 }
 
 .mobileMenu{
@@ -107,7 +115,7 @@ nav input:hover{
         right: 0;
         width: 100vw;
         height: 90vh;
-        background-color: #001F3C;
+        background-color: #17171f;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;

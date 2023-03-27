@@ -27,8 +27,26 @@
         </nav>
     </header>
     <main>
-        <div class="mainContainer">
-            
+        <div class="container">
+            <section class="header">
+                <h2>Login</h2>
+            </section>
+            <form class="form login">
+                <div class="form-content">
+                    <i class="fa-solid fa-envelope"></i>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Digite seu Email">
+                    <span class="email">Mensagem de erro</span>
+                </div>
+                <div class="form-content">
+                    <i id="fa-eye-confirm" class="fa-solid fa-eye"></i>
+                    <label for="confirmPassword">Confirmação de senha</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirme a senha">
+                    <span class="confirmPassword">Mensagem de erro</span>
+                </div>
+                <button type="submit">Cadastrar</button>
+                <div class="loginRegister"><a href="#">Faça o Login</a></div>
+            </form>
         </div>
     </main>
     <script src="index.js" type="module"></script>

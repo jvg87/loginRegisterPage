@@ -25,11 +25,31 @@
         </nav>
     </header>
     <main>
-        <div class="background"></div>
+        <!-- <div class="background"></div> -->
         <div class="container">
             <span class="iconClose"><i class="fa-solid fa-xmark"></i></span>
-            <div class="content">
-
+            <div class="content-form login">
+                <h2>Login</h2>
+                <form>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                        <input type="email" name="emailLogin" id="emailLogin" required>
+                        <label for="emailLogin" id="labelEmailLogin">Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i id="fa-eye-slash-login" class="fa-solid fa-eye-slash"></i></span>
+                        <input type="password" name="password" id="passwordLogin" required>
+                        <label for="passwordLogin" id="labelPasswordLogin">Password</label>
+                    </div>
+                    <div class="remember">
+                        <label for="rememberCheck"><input type="checkbox" name="rememberCheck" id="rememberCheck"> Remember me</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="submit">Login</button>
+                    <div class="loginRegister">
+                        <p>Don't have an account? <a href="#" class="registerLink">Register</a></p>
+                    </div>
+                </form>
             </div>
         </div>
     </main>

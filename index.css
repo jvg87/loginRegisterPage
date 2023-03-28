@@ -2,8 +2,9 @@
 
 :root{
     --cor1: #C5E5DA;
-    --cor2: #385748;
+    --cor2: #395849;
     --cor3: #1E3227;
+    --cor4: #598670;
 }
 
 *{
@@ -15,6 +16,8 @@
 body{
     font-family: 'Poppins', sans-serif;
     background-color: var(--cor2);
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -50,6 +53,7 @@ ul{
     display: flex;
     align-items: center;
     gap: 32px;
+    margin-left: 2.5rem;
 }
 
 .navList a{
@@ -99,8 +103,6 @@ ul{
     background-color: var(--cor1);
 }
 
-
-
 .mobileMenu{
     cursor: pointer;
     display: none;
@@ -115,7 +117,17 @@ ul{
     transition: .3s;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 900px) {
+    .logo{
+        margin-left: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .logo{
+        margin-left: 1rem;
+    }
+
     .mobileMenu{
         display: block;
     }
@@ -174,6 +186,7 @@ ul{
 /* ------------------LOGIN------------------ */
 
 main{
+    position: relative;
     display: grid;
     place-items: center;
 }
@@ -182,56 +195,78 @@ main{
     transition: .3s;
 }
 
-.backbround{
-    position: fixed;
-    top: 10vh;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-    opacity: 0;
-    visibility: hidden;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 .container{
-    position: absolute;
+    position: fixed;
     top: 50%;
-    /* right: 50%; */
     right: -300px;
-    background-color: var(--cor3);
-    color: var(--cor1);
-    border: 2px solid var(--cor1);
+    transform: translate(50%, -50%);
     width: 400px;
     height: 440px;
+    background-color: var(--cor1);
+    border: 1px solid var(--cor3);
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-    display: grid;
-    place-items: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    transform: translate(50%, -50%);
 }
 
-@keyframes container-active{
+.iconClose{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background-color: var(--cor3);
+    font-size: 2rem;
+    color: var(--cor1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px ;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.iconClose:hover{
+    filter: brightness(1.5);
+}
+
+@keyframes container-open{
     0%, 50%{
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+    55%{
+        width: 150px;
+        height: 150px;
+        /* border-radius: 50%; */
+    }
+    100%{
+        right: 50%;
+    }
+}
+
+@keyframes container-close{
+    0%, 50%{
+        right: 50%;
+    }
+    55%{
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    } 
+    
+    100%{
         width: 150px;
         height: 150px;
         border-radius: 50%;
     }
-    55%, 100%{
-        right: 50%;
-    }
-    60%{
-        width: 150px;
-        border-radius: 12px;
-    }
-    75%{
-        transform: translate(50%, -50%);
-    }
 }
 
-@keyframes content-active{
+@keyframes content-open{
     0%, 75%{
         opacity: 0;
     }
@@ -240,38 +275,164 @@ main{
     }
 }
 
-main.open .background{
-    visibility: visible;
-    opacity: 1;
+@keyframes content-close{
+    0%, 75%{
+        opacity: 1;
+    }
+    85%, 100%{
+        opacity: 0;
+    }
 }
 
-main.open .container{
-    animation: container-active 1s both;
+.container.open{
+    animation: container-open 1s both;
 }
 
-main.open .content{
-    animation: content-active 1s both;
+.container.close{
+    animation: container-close 1s both;
 }
 
-/* main.open{
-    scale: 0.75;
-} */
+.container.open .content-form{
+    animation: content-open 1s both;
+}
 
-.iconClose{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45px;
-    height: 45px;
-    background-color: var(--cor1);
+.container.close .content-form{
+    animation: content-close .1s both;
+}
+
+
+@media screen and (max-width: 450px) {
+    .container{
+        max-width: 320px;
+    }
+}
+
+.content-form{
+    width: 100%;
+    padding: 40px;
+}
+
+.content-form h2{
     font-size: 2rem;
-    color: var(--cor2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom-left-radius: 20px ;
-    z-index: 1;
-    cursor: pointer;
-
+    text-align: center;
+    color: var(--cor3);
 }
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: var(--cor4);
+    font-weight: 500;
+    pointer-events: none;
+    transition: .3s;
+}
+
+:is(input:focus, input:valid) ~ label {
+    top: -5px;
+    left: -1px;
+    transform: scale(.875);
+    color: var(--cor3);
+    font-weight: 600;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--cor4);
+    outline: none;
+    font-size: 1rem;
+    color: var(--cor3);
+    font-weight: 600;
+    padding: 10px 40px 0 5px;
+    transition: .3s;
+}
+
+:is(input:focus, input:valid) {
+    border-bottom: 2px solid var(--cor3);
+}
+
+.icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2rem;
+    color: var(--cor3);
+    line-height: 57px;
+}
+
+.fa-eye, .fa-eye-slash{
+    cursor: pointer;
+}
+
+.remember{
+    font-size: .9rem;
+    color: var(--cor3);
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember label input{
+    accent-color: var(--cor3);
+    margin-right: 3px;
+}
+
+.remember a{
+    text-decoration: none;
+    color: var(--cor3);
+}
+
+.remember a:hover{
+    text-decoration: underline;
+}
+
+.submit{
+    width: 100%;
+    height: 45px;
+    border: none;
+    outline: none;
+    background-color: var(--cor3);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--cor1);
+    font-weight: 500;
+    transition: .3s ease;
+}
+
+.submit:hover{
+    filter: brightness(1.5);
+}
+
+.loginRegister{
+    font-size: .9rem;
+    color: var(--cor3);
+    text-align: center;
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+.loginRegister a{
+    color: var(--cor3);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.loginRegister a:hover{
+    text-decoration: underline;
+}
+
+
 

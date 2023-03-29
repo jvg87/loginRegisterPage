@@ -213,6 +213,7 @@ main{
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    transition: .3s;
 }
 
 .iconClose{

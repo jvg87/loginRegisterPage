@@ -30,7 +30,9 @@ const inputsRegister = new InputsRegister(
     '#fa-eye-register', 
     '#passwordConfirm', 
     '#labelPasswordConfirm', 
-    '#fa-eye-confirm')
+    '#fa-eye-confirm',
+    '#formRegister'
+    )
 
 
 
@@ -38,4 +40,6 @@ mobileNavbar.init()
 popupLogin.clickLogin()
 popupLogin.switchLogin()
 inputsLogin.view()
-inputsRegister.viewPass()
+inputsRegister.viewPass(inputsRegister.password, inputsRegister.iconPassword)
+inputsRegister.viewPass(inputsRegister.validPass, inputsRegister.iconValid)
+inputsRegister.register()

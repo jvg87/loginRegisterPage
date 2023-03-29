@@ -5,6 +5,9 @@
     --cor2: #395849;
     --cor3: #1E3227;
     --cor4: #598670;
+
+    --error: #ff3b25;
+    --success: #06b34e;
 }
 
 *{
@@ -349,11 +352,11 @@ main{
     border-bottom: 2px solid var(--cor3);
 }
 
-.icon{
+.fa-solid:not(.fa-xmark){
     position: absolute;
     right: 8px;
     font-size: 1.2rem;
-    color: var(--cor3);
+    color: var(--cor2);
     line-height: 57px;
 }
 
@@ -365,7 +368,7 @@ main{
     font-size: .9rem;
     color: var(--cor3);
     font-weight: 500;
-    margin: -15px 0 15px;
+    margin: -10px 0 15px;
     display: flex;
     justify-content: space-between;
 }
@@ -461,4 +464,43 @@ main{
         font-size: .7rem;
     }
 }
+
+.input-box span{
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    bottom: -18px;
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.input-box.error span{
+    color: var(--error);
+    visibility: visible;
+}
+
+.input-box.error input{
+    border-bottom: 2px solid var(--error);
+}
+
+.input-box.error label{
+    color: var(--error);
+}
+
+.input-box.error .fa-solid:not(.fa-xmark){
+    color: var(--error);
+}
+
+.input-box.success input{
+    border-bottom: 2px solid var(--success);
+}
+
+.input-box.success label{
+    color: var(--success);
+}
+
+.input-box.success .fa-solid:not(.fa-xmark){
+    color: var(--success);
+}
+
 

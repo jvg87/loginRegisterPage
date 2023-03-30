@@ -1,3 +1,12 @@
+import { PopupLogin } from "../popupLogin/PopupLogin.js"
+
+const popupLogin = new PopupLogin(
+    '.btnLogin',
+    '.iconClose', 
+    '.container', 
+    '.registerLink', 
+    '.loginLink'
+)
 export class InputsRegister{
     constructor(username, labelUsername, email, labelEmail, password, labelPassword, iconPassword, validPass, labelValidPass, iconValid, form, formItems){
         this.username = document.querySelector(username)
@@ -103,6 +112,7 @@ export class InputsRegister{
             this.listSessionStorage()
             setTimeout(() => {
                 this.clean()
+                popupLogin.removeActive()
             }, 1000)
         }
     }

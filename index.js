@@ -21,7 +21,8 @@ const inputsLogin = new InputsLogin(
     '#passwordLogin',
     '#labelPasswordLogin', 
     '#fa-eye-login',
-    '#formLogin'
+    '#formLogin',
+    '#formLogin .input-box'
     )
 const inputsRegister = new InputsRegister(
     '#usernameRegister', 

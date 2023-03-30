@@ -1,11 +1,21 @@
+import { PopupLogin } from "../popupLogin/PopupLogin.js"
+
+const popupLogin = new PopupLogin(
+    '.btnLogin',
+    '.iconClose', 
+    '.container', 
+    '.registerLink', 
+    '.loginLink'
+)
 export class InputsLogin{
-    constructor(email, labelEmail, password, labelPassword, icon, form){
+    constructor(email, labelEmail, password, labelPassword, icon, form, formItems){
         this.email = document.querySelector(email)
         this.labelEmail = document.querySelector(labelEmail)
         this.password = document.querySelector(password)
         this.labelPassword = document.querySelector(labelPassword)
         this.icon = document.querySelector(icon)
         this.form = document.querySelector(form)
+        this.formItems = document.querySelectorAll(formItems)
         this.userList = []
         this.users = {name, email, password}
     }
@@ -32,6 +42,14 @@ export class InputsLogin{
         input.parentElement.classList.add('success')
     }
 
+    clean(){
+        this.form.reset()
+        const items = [...this.formItems]
+        items.map((item) => {
+            item.classList.remove('success')
+        })
+    }
+
     getSessionStorage(){
         this.users = {
             name: '',
@@ -39,52 +57,44 @@ export class InputsLogin{
             password: ''
         }
         this.userList = JSON.parse(sessionStorage.getItem('userList'))
-    }
 
-    userResgistred(){
-        this.getSessionStorage()
-        this.valided()
-
-        // if (!Array.isArray(this.userList) || this.userList <= 0){
-        //     this.error(this.email, 'Usuário ou senha não encontrados!')
-        //     this.error(this.password, 'Usuário ou senha não encontrados!')
-        //     console.log(this.userList)
-            
-        // } else {
-        //     this.valided()
-        // }
+        if (!Array.isArray(this.userList) && this.userList<= 0){
+            this.error(this.email, 'Usuário ou senha não cadastrados!')
+            this.error(this.password, 'Usuário ou senha não cadastrados!')
+        } else {
+            this.userList.map(el => {
+                if (this.email.value === el.emailList && this.password.value === el.passwordList){
+                    this.users = {
+                        name: el.usernameList,
+                        email: el.emailList,
+                        password: el.passwordList
+                    }
+                }
+            })
+        }
     }
 
     valided(){
-        this.userList.map(el => {
-            if (this.email.value === el.emailList && this.password.value === el.passwordList){
-                this.users = {
-                    name: el.usernameList,
-                    email: el.emailList,
-                    password: el.passwordList
-                }
-            }
-        })
+        this.getSessionStorage()
 
-        if (this.email.value !== this.users.email && this.password.value === this.users.password){
-            this.error(this.email, 'Usuário não cadastrado!')
-            this.success(this.password)
-        } else if (this.email.value === this.users.email && this.password.value !== this.users.password) {
-            this.success(this.email)
-            this.error(this.password, 'Senha incorreta!')
-        } else {
+        if (this.email.value === this.users.email && this.password.value === this.users.password){
+            alert('Conectado!')
             this.success(this.email)
             this.success(this.password)
-            console.log('conectado')
+            setTimeout(() => {
+                this.clean()
+                popupLogin.closeLogin()
+            }, 1000)
+        } else if (this.email.value) {
+            this.error(this.email, 'Usuário ou senha não encontrados!')
+            this.error(this.password, 'Usuário ou senha não encontrados!')
         }
     }
 
     login(){
         this.form.addEventListener('submit', ev => {
             ev.preventDefault()
-            this.userResgistred()
-
-            
+            this.valided()
         })
     }
 }

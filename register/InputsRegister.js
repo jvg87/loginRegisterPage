@@ -1,5 +1,5 @@
 export class InputsRegister{
-    constructor(username, labelUsername, email, labelEmail, password, labelPassword, iconPassword, validPass, labelValidPass, iconValid, form){
+    constructor(username, labelUsername, email, labelEmail, password, labelPassword, iconPassword, validPass, labelValidPass, iconValid, form, formItems){
         this.username = document.querySelector(username)
         this.labelUsername = document.querySelector(labelUsername)
         this.email = document.querySelector(email)
@@ -11,6 +11,7 @@ export class InputsRegister{
         this.labelValidPass = document.querySelector(labelValidPass)
         this.iconValid = document.querySelector(iconValid)
         this.form = document.querySelector(form)
+        this.formItems = document.querySelectorAll(formItems)
     }
 
     viewPass(input, icon){
@@ -67,14 +68,49 @@ export class InputsRegister{
         }
     }
 
+    listSessionStorage(){
+        let userList = JSON.parse(sessionStorage.getItem('userList') || '[]')
+        userList.push(
+            {
+            usernameList: this.username.value,
+            emailList: this.email.value,
+            passwordList: this.password.value
+            }
+        )
+        sessionStorage.setItem('userList', JSON.stringify(userList))
+    }
+
+    clean(){
+        this.form.reset()
+        const items = [...this.formItems]
+        items.map((item) => {
+            item.classList.remove('success')
+        })
+    }
+
+    valided(){
+        this.usernameValidation()
+        this.emaiValidation()
+        this.passwordValidation()
+        this.confirmationPasswordValidation()
+
+        const isValid = [...this.formItems].every((item) => {
+            return item.className === 'input-box success'
+        })
+
+        if(isValid){
+            alert('Cadastro efetuado com sucesso!')
+            this.listSessionStorage()
+            setTimeout(() => {
+                this.clean()
+            }, 1000)
+        }
+    }
+
     register(){
         this.form.addEventListener('submit', (ev) => {
             ev.preventDefault()
-
-            this.usernameValidation()
-            this.emaiValidation()
-            this.passwordValidation()
-            this.confirmationPasswordValidation()
+            this.valided()
         })
     }
 }
